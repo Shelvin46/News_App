@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/app.dart';
-import 'package:news_app/features/splash_screen/screens/splash_screen.dart';
 
 void main() async {
   //Setting up ServiceLocator

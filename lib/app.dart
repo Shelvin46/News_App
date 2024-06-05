@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants/color_constants.dart';
 import 'package:news_app/core/constants/text_style_constants.dart';
 import 'package:news_app/features/splash_screen/screens/splash_screen.dart';
@@ -16,8 +15,8 @@ class MyApp extends StatelessWidget {
     onSecondary: AppColors.white,
     error: AppColors.red,
     onError: AppColors.red,
-    background: AppColors.black,
-    onBackground: AppColors.black,
+    // background: AppColors.black,
+    // onBackground: AppColors.black,
     surface: AppColors.black,
     onSurface: AppColors.black,
   );
@@ -30,8 +29,8 @@ class MyApp extends StatelessWidget {
     onSecondary: AppColors.black,
     error: AppColors.red,
     onError: AppColors.red,
-    background: AppColors.white,
-    onBackground: AppColors.grey,
+    // background: AppColors.white,
+    // onBackground: AppColors.grey,
     surface: AppColors.white,
     onSurface: AppColors.white,
   );
@@ -45,8 +44,8 @@ class MyApp extends StatelessWidget {
       onSecondary: AppColors.white,
       error: AppColors.white,
       onError: AppColors.white,
-      background: AppColors.white,
-      onBackground: AppColors.white,
+      // background: AppColors.white,
+      // onBackground: AppColors.white,
       surface: AppColors.white,
       onSurface: AppColors.white,
     ),
