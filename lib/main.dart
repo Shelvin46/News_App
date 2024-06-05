@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/app.dart';
+import 'package:news_app/service_locator.dart';
 
 void main() async {
   //Setting up ServiceLocator
-  // ServiceLocator.setupLocator();
+  ServiceLocator.setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
 
   //Setting SystemUIOverlay

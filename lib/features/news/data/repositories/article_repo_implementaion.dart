@@ -11,16 +11,14 @@ class ArticlesRepoImplementation implements ArticleRepo {
   @override
   Future<Either<Failure, Articles>> getArticles() async {
     final queryParameters = {
-      'q': 'apple',
-      'from': '2024-05-16',
-      'to': '2024-05-16',
-      'sortBy': 'popularity',
+      'country': 'in',
+      'category': 'technology',
       'apiKey': ApiKeys.articleApiKey,
     };
     try {
       // api call will happen here
       final response = await locator<Dio>().get(
-        "https://newsapi.org/v2/everything",
+        "https://newsapi.org/v2/top-headlines",
         queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {

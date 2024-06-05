@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants/base_bloc_states.dart';
 import 'package:news_app/features/news/presentation/blocs/get_articles/get_articles_bloc.dart';
-import 'package:news_app/features/news/presentation/screens/widgets/article_category_widget.dart';
 import 'package:news_app/features/news/presentation/screens/widgets/article_list_tile_widget.dart';
 import 'package:news_app/features/news/presentation/screens/widgets/custom_divider.dart';
 
@@ -18,6 +17,7 @@ class ArticleScreen extends StatefulWidget {
 class _ArticleScreenState extends State<ArticleScreen> {
   @override
   void initState() {
+    context.read<GetArticlesBloc>().add(const GetArticles());
     super.initState();
   }
 
@@ -41,8 +41,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
     return Column(
       children: [
         30.heightBox,
-        ArticleCategoriesWidget(articleCategories: articleCategories),
-        const CustomDivider(),
+        // ArticleCategoriesWidget(articleCategories: articleCategories),
+        // const CustomDivider(),
         BlocBuilder<GetArticlesBloc, BaseState>(
           builder: (context, state) {
             if (state is GetArticlesState) {

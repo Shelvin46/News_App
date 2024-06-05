@@ -21,8 +21,8 @@ class ArticleCategoriesWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final articleCategory = articleCategories[index];
           return ChoiceChip(
-              color: MaterialStatePropertyAll<Color>(
-                Theme.of(context).colorScheme.onBackground,
+              color: WidgetStatePropertyAll<Color>(
+                Theme.of(context).colorScheme.onSurface,
               ),
               shape: RoundedRectangleBorder(
                 // side: BorderSide(
