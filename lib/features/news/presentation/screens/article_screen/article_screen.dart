@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             },
             builder: (context, state) {
               if (state is GetArticlesState) {
+                log("Articles: ${state.articles.length}");
                 return ListView.separated(
                     shrinkWrap: true,
                     primary: false,

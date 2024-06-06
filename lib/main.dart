@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_app/app.dart';
-import 'package:news_app/features/news/data/datasources/local_database/db_opreations.dart';
 import 'package:news_app/service_locator.dart';
 
 void main() async {

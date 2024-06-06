@@ -56,7 +56,7 @@ class SQLiteOperations {
         description: maps[i]['description'],
         url: maps[i]['url'],
         urlToImage: maps[i]['urlToImage'],
-        publishedAt: maps[i]['publishedAt'],
+        publishedAt: DateTime.parse(maps[i]['publishedAt']),
       );
     });
   }
