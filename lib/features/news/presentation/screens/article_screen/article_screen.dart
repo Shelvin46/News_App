@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:awesome_extensions/awesome_extensions.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants/base_bloc_states.dart';
 import 'package:news_app/features/news/data/datasources/local_database/db_opreations.dart';
+import 'package:news_app/features/news/infrastructure/connectivity_manager.dart';
 import 'package:news_app/features/news/presentation/blocs/get_articles/get_articles_bloc.dart';
 import 'package:news_app/features/news/presentation/screens/widgets/article_list_tile_widget.dart';
 import 'package:news_app/features/news/presentation/screens/widgets/custom_divider.dart';
@@ -17,10 +21,22 @@ class ArticleScreen extends StatefulWidget {
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  // Connectivity anConnectivity = Connectivity();
+  final connectObj = ConnectivityCheck();
   @override
   void initState() {
+    ConnectivityCheck().initConnectivity();
+    _connectivitySubscription = locator<Connectivity>().onConnectivityChanged
+        .listen(connectObj.updateConnectionStatus);
     context.read<GetArticlesBloc>().add(const GetArticles());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
   }
 
   final List<ArticleCategoriesModel> articleCategories = [
