@@ -55,6 +55,7 @@ class Article {
   });
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
+        id: generateId(),
         author: json["author"],
         title: json["title"],
         description: json["description"],
@@ -65,6 +66,7 @@ class Article {
       );
 
   Map<String, dynamic> toJson() => {
+        'id': generateId(),
         "author": author,
         "title": title,
         "description": description,
@@ -73,6 +75,12 @@ class Article {
         "publishedAt": publishedAt.toIso8601String(),
         "content": content,
       };
+
+  static int generateId() {
+    // Generate a unique ID for this article.
+    // This is just an example. You should replace this with your own ID generation logic.
+    return DateTime.now().millisecondsSinceEpoch;
+  }
 }
 
 class Source {

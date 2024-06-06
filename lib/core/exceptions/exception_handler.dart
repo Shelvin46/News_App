@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:news_app/core/constants/base_bloc_states.dart';
 import 'package:news_app/core/failures/failures.dart';
+import 'package:sqflite/sqflite.dart';
 
 class CustomExceptionHandler implements Exception {
   static Failure handleException(DioException e) {
@@ -15,6 +16,8 @@ class CustomExceptionHandler implements Exception {
       return const APIException(message: "Invalid Request");
     } else if (e.error is SocketException) {
       return const NetworkException(message: "Server Error");
+    } else if (e.error is DatabaseException) {
+      return const LocalDatabaseException(message: "Local Database Error");
     } else {
       return const Failure(message: "An error occurred");
     }
@@ -37,6 +40,10 @@ class CustomExceptionHandler implements Exception {
       return {
         "error": "No internet",
       };
+    } else if (e is LocalDatabaseException) {
+      return {
+        "error": "Local Database Error",
+      };
     } else {
       return {
         "error": "Something went wrong",
@@ -49,6 +56,7 @@ class CustomExceptionHandler implements Exception {
     "Invalid Format": const ParsingErrorState(),
     "Invalid Request": const FormatExceptionState(),
     "No internet": const NoInternetState(),
+    "Local Database Error": const LocalDatabaseErrorState(),
     "Something went wrong": const ServerErrorState()
   };
 }

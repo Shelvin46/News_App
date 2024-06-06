@@ -13,3 +13,10 @@ final class GetArticles extends GetArticlesEvent {
   @override
   List<Object> get props => [];
 }
+
+final class GetArticlesFormLocalDb extends GetArticlesEvent {
+  const GetArticlesFormLocalDb();
+
+  @override
+  List<Object> get props => [];
+}

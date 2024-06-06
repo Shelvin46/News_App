@@ -24,7 +24,9 @@ class CustomTimeoutException extends Failure {
   const CustomTimeoutException({required super.message});
 }
 
-
+class LocalDatabaseException extends Failure {
+  const LocalDatabaseException({required super.message});
+}
 
 
 ///[ServerFailure] is a class that is used to handle server errors in the application

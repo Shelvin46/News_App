@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants/base_bloc_states.dart';
 import 'package:news_app/core/exceptions/exception_handler.dart';
+import 'package:news_app/features/news/data/datasources/local_database/db_opreations.dart';
 import 'package:news_app/features/news/data/models/article_model.dart';
 import 'package:news_app/features/news/domain/usecases/article_usecases.dart';
 import 'package:news_app/service_locator.dart';
@@ -35,6 +36,27 @@ class GetArticlesBloc extends Bloc<GetArticlesEvent, BaseState> {
       }, (right) {
         return emit(
           GetArticlesState(articles: right.articles),
+        );
+      });
+    });
+
+    on<GetArticlesFormLocalDb>((event, emit) async {
+      emit(LoadingState());
+
+      final articles = await locator<SQLiteOperations>().getNews();
+
+      articles.fold((left) {
+        final failureMessage = CustomExceptionHandler.handleExceptionToMap(
+          left,
+        );
+
+        final state =
+            CustomExceptionHandler.exceptions[failureMessage["error"]];
+
+        return emit(state);
+      }, (right) {
+        return emit(
+          GetArticlesState(articles: right),
         );
       });
     });

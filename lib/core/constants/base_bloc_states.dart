@@ -62,3 +62,10 @@ class ServerErrorState extends BaseState {
   @override
   List<Object> get props => [];
 }
+
+class LocalDatabaseErrorState extends BaseState {
+  const LocalDatabaseErrorState();
+
+  @override
+  List<Object> get props => [];
+}
