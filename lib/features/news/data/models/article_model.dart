@@ -34,7 +34,7 @@ class Articles {
 }
 
 class Article {
-  Source? source;
+  int? id;
   String? author;
   String? title;
   String? description;
@@ -44,7 +44,7 @@ class Article {
   String? content;
 
   Article({
-    required this.source,
+    this.id,
     required this.author,
     required this.title,
     required this.description,
@@ -55,7 +55,6 @@ class Article {
   });
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: Source.fromJson(json["source"]),
         author: json["author"],
         title: json["title"],
         description: json["description"],
@@ -66,7 +65,6 @@ class Article {
       );
 
   Map<String, dynamic> toJson() => {
-        "source": source?.toJson(),
         "author": author,
         "title": title,
         "description": description,

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:news_app/features/news/data/datasources/local_database/db_opreations.dart';
 import 'package:news_app/features/news/data/repositories/article_repo_implementaion.dart';
 import 'package:news_app/features/news/domain/repositories/article_repo.dart';
 import 'package:news_app/features/news/domain/usecases/article_usecases.dart';
@@ -14,5 +15,6 @@ class ServiceLocator {
     locator.registerLazySingleton(() => ArticleUsecases());
     locator.registerSingleton<ArticleRepo>(ArticlesRepoImplementation());
     locator.registerSingleton<Dio>(Dio());
+    locator.registerSingleton<SQLiteOperations>(SQLiteOperations());
   }
 }
