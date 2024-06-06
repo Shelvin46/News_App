@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -70,6 +71,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
             },
             builder: (context, state) {
               if (state is GetArticlesState) {
+                log("Articles: ${state.articles.length}");
                 return ListView.separated(
                     shrinkWrap: true,
                     primary: false,
