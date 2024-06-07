@@ -19,5 +19,6 @@ class ServiceLocator {
     locator.registerSingleton<Dio>(Dio());
     locator.registerSingleton<SQLiteOperations>(SQLiteOperations());
     locator.registerSingleton<Connectivity>(Connectivity());
+    locator.registerSingleton<ConnectivityCheck>(ConnectivityCheck());
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:awesome_extensions/awesome_extensions.dart';
@@ -22,21 +21,24 @@ class ArticleScreen extends StatefulWidget {
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
-  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
-  // Connectivity anConnectivity = Connectivity();
-  final connectObj = ConnectivityCheck();
   @override
   void initState() {
-    ConnectivityCheck().initConnectivity();
-    _connectivitySubscription = locator<Connectivity>().onConnectivityChanged
-        .listen(connectObj.updateConnectionStatus);
-    context.read<GetArticlesBloc>().add(const GetArticles());
+    locator<ConnectivityCheck>().initializeNetworkListener().onData(
+      (data) {
+        if (data.contains(ConnectivityResult.none)) {
+          context.read<GetArticlesBloc>().add(const GetArticlesFormLocalDb());
+        } else {
+          context.read<GetArticlesBloc>().add(const GetArticles());
+        }
+      },
+    );
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
+    // _connectivitySubscription.cancel();
     super.dispose();
   }
 
