@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -18,6 +19,7 @@ class SQLiteOperations {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
     String path = join(documentsDirectory.path, "news.db");
+    log("Database path: $path");
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
